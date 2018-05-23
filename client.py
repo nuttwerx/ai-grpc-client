@@ -11,10 +11,14 @@ STREAM_LASER_FWD_OFF = [FCU, 0x0100, [0x00000000, 0x00001201, 0x0, 0x0]]
 
 ACTIONS = [STREAM_ACCEL_ON,STREAM_ACCEL_OFF,STREAM_LASER_FWD_ON,STREAM_LASER_FWD_OFF]
 
+PARAM_LIST = ["Accel 1 Current Accel","Accel 2 Current Accel","Accel 1 X Raw","Accel 1 Y Raw","Accel 1 Z Raw","Accel 2 X Raw","Accel 2 Y Raw","Accel 2 Z Raw",]
+
 
 class GrpcClient():
     def __init__(self):
+        # establishing the connection to the groundstation
         self.channel = grpc.insecure_channel('localhost:9800')
+        # setting up the allowed methods on the connection
         self.stub = groundstation_pb2_grpc.GroundStationServiceStub(self.channel)
         self.listeners = []
 
@@ -26,15 +30,16 @@ class GrpcClient():
         self.stub.sendCommand(command)
 
     def listen(self):
-        request = groundstation_pb2.StreamRequest()
+        # request object that specifies which parameters we would like to receive
+        request = groundstation_pb2.StreamRequest(All=False, Parameters=PARAM_LIST)
+        # this action sends the request to the ground station and returns a stream
         data_stream = self.stub.streamPackets(request)
-
         for dataBundle in data_stream:
+            # retrieve the data array
             parameters = dataBundle.Parameters
             values = []
             parameters.sort(key=lambda param: param.ParamName)
             for param in parameters:
-                # do whatever action you want here
                 val = extract_value(param)
                 values.append(val)
             for listener in self.listeners:
@@ -47,7 +52,7 @@ def extract_value(parameter):
     elif parameter.Value.Index == 2:
         return parameter.Value.Uint64Value
     elif parameter.Value.Index == 3:
-        return parameter.Value.Index.DoubleValue
+        return parameter.Value.DoubleValue
 
 
 if __name__ == '__main__':

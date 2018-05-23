@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='groundstation.proto',
   package='proto',
   syntax='proto3',
-  serialized_pb=_b('\n\x13groundstation.proto\x12\x05proto\"\x0f\n\rStreamRequest\"\xdb\x01\n\rServerControl\x12\x31\n\x07\x43ommand\x18\x01 \x01(\x0e\x32 .proto.ServerControl.CommandEnum\"\x96\x01\n\x0b\x43ommandEnum\x12\x13\n\x0fLogServiceStart\x10\x00\x12\x12\n\x0eLogServiceStop\x10\x01\x12\x19\n\x15\x44\x61taStoreManagerStart\x10\x02\x12\x18\n\x14\x44\x61taStoreManagerStop\x10\x03\x12\x14\n\x10\x42roadcasterStart\x10\x04\x12\x13\n\x0f\x42roadcasterStop\x10\x05\"\x1f\n\x0fStartLogCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\"9\n\x07\x43ommand\x12\x0c\n\x04Node\x18\x01 \x01(\t\x12\x12\n\nPacketType\x18\x02 \x01(\x05\x12\x0c\n\x04\x44\x61ta\x18\x03 \x03(\x05\"\x99\x01\n\nSimCommand\x12\x31\n\x07\x43ommand\x18\x01 \x01(\x0e\x32 .proto.SimCommand.SimCommandEnum\"X\n\x0eSimCommandEnum\x12\x10\n\x0cRunSimulator\x10\x00\x12\x12\n\x0ePauseSimulator\x10\x01\x12\x11\n\rStopSimulator\x10\x02\x12\r\n\tStartPush\x10\x03\"\'\n\x03\x41\x63k\x12\x0f\n\x07Success\x18\x01 \x01(\x08\x12\x0f\n\x07Message\x18\x02 \x01(\t\"\xa3\x01\n\x0cServerStatus\x12\x1f\n\x17\x44\x61taStoreManagerRunning\x18\x01 \x01(\x08\x12\x19\n\x11GRPCServerRunning\x18\x02 \x01(\x08\x12\x1a\n\x12\x42roadcasterRunning\x18\x03 \x01(\x08\x12\x17\n\x0fGSLoggerRunning\x18\x04 \x01(\x08\x12\"\n\tOpenPorts\x18\x05 \x03(\x0b\x32\x0f.proto.OpenPort\")\n\x08OpenPort\x12\x0c\n\x04Port\x18\x01 \x01(\x05\x12\x0f\n\x07Serving\x18\x02 \x01(\x08\"+\n\x04Pong\x12#\n\x06Status\x18\x01 \x01(\x0b\x32\x13.proto.ServerStatus\"\x06\n\x04Ping\"/\n\nDataBundle\x12!\n\nParameters\x18\x01 \x03(\x0b\x32\r.proto.Params\"g\n\nDataPacket\x12\x12\n\nPacketName\x18\x01 \x01(\t\x12\x12\n\nPacketType\x18\x02 \x01(\x05\x12\x0e\n\x06RxTime\x18\x03 \x01(\x03\x12!\n\nParameters\x18\x04 \x03(\x0b\x32\r.proto.Params\"k\n\x06Params\x12\x12\n\nPacketName\x18\x01 \x01(\t\x12\x11\n\tParamName\x18\x02 \x01(\t\x12\x0e\n\x06RxTime\x18\x03 \x01(\x03\x12\x1b\n\x05Value\x18\x04 \x01(\x0b\x32\x0c.proto.Value\x12\r\n\x05Units\x18\x05 \x01(\t\"T\n\x05Value\x12\r\n\x05Index\x18\x01 \x01(\x05\x12\x12\n\nInt64Value\x18\x02 \x01(\x03\x12\x13\n\x0bUint64Value\x18\x03 \x01(\x04\x12\x13\n\x0b\x44oubleValue\x18\x04 \x01(\x01\"b\n\x07SimInit\x12\x14\n\x0c\x63onfig_files\x18\x01 \x03(\t\x12-\n\rconfig_params\x18\x02 \x03(\x0b\x32\x16.proto.ConfigParameter\x12\x12\n\noutput_dir\x18\x03 \x01(\t\"5\n\x0f\x43onfigParameter\x12\x13\n\x0b\x63onfig_path\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"\x16\n\x14SimConfigListRequest\"$\n\rSimConfigList\x12\x13\n\x0b\x63onfigNames\x18\x01 \x03(\t2\x83\x03\n\x14GroundStationService\x12<\n\rstreamPackets\x12\x14.proto.StreamRequest\x1a\x11.proto.DataBundle\"\x00\x30\x01\x12+\n\x0bsendCommand\x12\x0e.proto.Command\x1a\n.proto.Ack\"\x00\x12\x31\n\x0esendSimCommand\x12\x11.proto.SimCommand\x1a\n.proto.Ack\"\x00\x12\"\n\x04ping\x12\x0b.proto.Ping\x1a\x0b.proto.Pong\"\x00\x12\x33\n\rcontrolServer\x12\x14.proto.ServerControl\x1a\n.proto.Ack\"\x00\x12\'\n\x07InitSim\x12\x0e.proto.SimInit\x1a\n.proto.Ack\"\x00\x12K\n\x14RequestSimConfigList\x12\x1b.proto.SimConfigListRequest\x1a\x14.proto.SimConfigList\"\x00\x62\x06proto3')
+  serialized_pb=_b('\n\x13groundstation.proto\x12\x05proto\"0\n\rStreamRequest\x12\x0b\n\x03\x41ll\x18\x01 \x01(\x08\x12\x12\n\nParameters\x18\x02 \x03(\t\"\xdb\x01\n\rServerControl\x12\x31\n\x07\x43ommand\x18\x01 \x01(\x0e\x32 .proto.ServerControl.CommandEnum\"\x96\x01\n\x0b\x43ommandEnum\x12\x13\n\x0fLogServiceStart\x10\x00\x12\x12\n\x0eLogServiceStop\x10\x01\x12\x19\n\x15\x44\x61taStoreManagerStart\x10\x02\x12\x18\n\x14\x44\x61taStoreManagerStop\x10\x03\x12\x14\n\x10\x42roadcasterStart\x10\x04\x12\x13\n\x0f\x42roadcasterStop\x10\x05\"\x1f\n\x0fStartLogCommand\x12\x0c\n\x04name\x18\x01 \x01(\t\"9\n\x07\x43ommand\x12\x0c\n\x04Node\x18\x01 \x01(\t\x12\x12\n\nPacketType\x18\x02 \x01(\x05\x12\x0c\n\x04\x44\x61ta\x18\x03 \x03(\x05\"\x99\x01\n\nSimCommand\x12\x31\n\x07\x43ommand\x18\x01 \x01(\x0e\x32 .proto.SimCommand.SimCommandEnum\"X\n\x0eSimCommandEnum\x12\x10\n\x0cRunSimulator\x10\x00\x12\x12\n\x0ePauseSimulator\x10\x01\x12\x11\n\rStopSimulator\x10\x02\x12\r\n\tStartPush\x10\x03\"\'\n\x03\x41\x63k\x12\x0f\n\x07Success\x18\x01 \x01(\x08\x12\x0f\n\x07Message\x18\x02 \x01(\t\"\xa3\x01\n\x0cServerStatus\x12\x1f\n\x17\x44\x61taStoreManagerRunning\x18\x01 \x01(\x08\x12\x19\n\x11GRPCServerRunning\x18\x02 \x01(\x08\x12\x1a\n\x12\x42roadcasterRunning\x18\x03 \x01(\x08\x12\x17\n\x0fGSLoggerRunning\x18\x04 \x01(\x08\x12\"\n\tOpenPorts\x18\x05 \x03(\x0b\x32\x0f.proto.OpenPort\")\n\x08OpenPort\x12\x0c\n\x04Port\x18\x01 \x01(\x05\x12\x0f\n\x07Serving\x18\x02 \x01(\x08\"+\n\x04Pong\x12#\n\x06Status\x18\x01 \x01(\x0b\x32\x13.proto.ServerStatus\"\x06\n\x04Ping\"/\n\nDataBundle\x12!\n\nParameters\x18\x01 \x03(\x0b\x32\r.proto.Params\"g\n\nDataPacket\x12\x12\n\nPacketName\x18\x01 \x01(\t\x12\x12\n\nPacketType\x18\x02 \x01(\x05\x12\x0e\n\x06RxTime\x18\x03 \x01(\x03\x12!\n\nParameters\x18\x04 \x03(\x0b\x32\r.proto.Params\"k\n\x06Params\x12\x12\n\nPacketName\x18\x01 \x01(\t\x12\x11\n\tParamName\x18\x02 \x01(\t\x12\x0e\n\x06RxTime\x18\x03 \x01(\x03\x12\x1b\n\x05Value\x18\x04 \x01(\x0b\x32\x0c.proto.Value\x12\r\n\x05Units\x18\x05 \x01(\t\"T\n\x05Value\x12\r\n\x05Index\x18\x01 \x01(\x05\x12\x12\n\nInt64Value\x18\x02 \x01(\x03\x12\x13\n\x0bUint64Value\x18\x03 \x01(\x04\x12\x13\n\x0b\x44oubleValue\x18\x04 \x01(\x01\"b\n\x07SimInit\x12\x14\n\x0c\x63onfig_files\x18\x01 \x03(\t\x12-\n\rconfig_params\x18\x02 \x03(\x0b\x32\x16.proto.ConfigParameter\x12\x12\n\noutput_dir\x18\x03 \x01(\t\"5\n\x0f\x43onfigParameter\x12\x13\n\x0b\x63onfig_path\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t\"\x16\n\x14SimConfigListRequest\"$\n\rSimConfigList\x12\x13\n\x0b\x63onfigNames\x18\x01 \x03(\t2\x83\x03\n\x14GroundStationService\x12<\n\rstreamPackets\x12\x14.proto.StreamRequest\x1a\x11.proto.DataBundle\"\x00\x30\x01\x12+\n\x0bsendCommand\x12\x0e.proto.Command\x1a\n.proto.Ack\"\x00\x12\x31\n\x0esendSimCommand\x12\x11.proto.SimCommand\x1a\n.proto.Ack\"\x00\x12\"\n\x04ping\x12\x0b.proto.Ping\x1a\x0b.proto.Pong\"\x00\x12\x33\n\rcontrolServer\x12\x14.proto.ServerControl\x1a\n.proto.Ack\"\x00\x12\'\n\x07InitSim\x12\x0e.proto.SimInit\x1a\n.proto.Ack\"\x00\x12K\n\x14RequestSimConfigList\x12\x1b.proto.SimConfigListRequest\x1a\x14.proto.SimConfigList\"\x00\x62\x06proto3')
 )
 
 
@@ -57,8 +57,8 @@ _SERVERCONTROL_COMMANDENUM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=117,
-  serialized_end=267,
+  serialized_start=150,
+  serialized_end=300,
 )
 _sym_db.RegisterEnumDescriptor(_SERVERCONTROL_COMMANDENUM)
 
@@ -87,8 +87,8 @@ _SIMCOMMAND_SIMCOMMANDENUM = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=427,
-  serialized_end=515,
+  serialized_start=460,
+  serialized_end=548,
 )
 _sym_db.RegisterEnumDescriptor(_SIMCOMMAND_SIMCOMMANDENUM)
 
@@ -100,6 +100,20 @@ _STREAMREQUEST = _descriptor.Descriptor(
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
+    _descriptor.FieldDescriptor(
+      name='All', full_name='proto.StreamRequest.All', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='Parameters', full_name='proto.StreamRequest.Parameters', index=1,
+      number=2, type=9, cpp_type=9, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -113,7 +127,7 @@ _STREAMREQUEST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=30,
-  serialized_end=45,
+  serialized_end=78,
 )
 
 
@@ -144,8 +158,8 @@ _SERVERCONTROL = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=48,
-  serialized_end=267,
+  serialized_start=81,
+  serialized_end=300,
 )
 
 
@@ -175,8 +189,8 @@ _STARTLOGCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=269,
-  serialized_end=300,
+  serialized_start=302,
+  serialized_end=333,
 )
 
 
@@ -220,8 +234,8 @@ _COMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=302,
-  serialized_end=359,
+  serialized_start=335,
+  serialized_end=392,
 )
 
 
@@ -252,8 +266,8 @@ _SIMCOMMAND = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=362,
-  serialized_end=515,
+  serialized_start=395,
+  serialized_end=548,
 )
 
 
@@ -290,8 +304,8 @@ _ACK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=517,
-  serialized_end=556,
+  serialized_start=550,
+  serialized_end=589,
 )
 
 
@@ -349,8 +363,8 @@ _SERVERSTATUS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=559,
-  serialized_end=722,
+  serialized_start=592,
+  serialized_end=755,
 )
 
 
@@ -387,8 +401,8 @@ _OPENPORT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=724,
-  serialized_end=765,
+  serialized_start=757,
+  serialized_end=798,
 )
 
 
@@ -418,8 +432,8 @@ _PONG = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=767,
-  serialized_end=810,
+  serialized_start=800,
+  serialized_end=843,
 )
 
 
@@ -442,8 +456,8 @@ _PING = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=812,
-  serialized_end=818,
+  serialized_start=845,
+  serialized_end=851,
 )
 
 
@@ -473,8 +487,8 @@ _DATABUNDLE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=820,
-  serialized_end=867,
+  serialized_start=853,
+  serialized_end=900,
 )
 
 
@@ -525,8 +539,8 @@ _DATAPACKET = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=869,
-  serialized_end=972,
+  serialized_start=902,
+  serialized_end=1005,
 )
 
 
@@ -584,8 +598,8 @@ _PARAMS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=974,
-  serialized_end=1081,
+  serialized_start=1007,
+  serialized_end=1114,
 )
 
 
@@ -636,8 +650,8 @@ _VALUE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1083,
-  serialized_end=1167,
+  serialized_start=1116,
+  serialized_end=1200,
 )
 
 
@@ -681,8 +695,8 @@ _SIMINIT = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1169,
-  serialized_end=1267,
+  serialized_start=1202,
+  serialized_end=1300,
 )
 
 
@@ -719,8 +733,8 @@ _CONFIGPARAMETER = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1269,
-  serialized_end=1322,
+  serialized_start=1302,
+  serialized_end=1355,
 )
 
 
@@ -743,8 +757,8 @@ _SIMCONFIGLISTREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1324,
-  serialized_end=1346,
+  serialized_start=1357,
+  serialized_end=1379,
 )
 
 
@@ -774,8 +788,8 @@ _SIMCONFIGLIST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1348,
-  serialized_end=1384,
+  serialized_start=1381,
+  serialized_end=1417,
 )
 
 _SERVERCONTROL.fields_by_name['Command'].enum_type = _SERVERCONTROL_COMMANDENUM
@@ -942,8 +956,8 @@ _GROUNDSTATIONSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   options=None,
-  serialized_start=1387,
-  serialized_end=1774,
+  serialized_start=1420,
+  serialized_end=1807,
   methods=[
   _descriptor.MethodDescriptor(
     name='streamPackets',
