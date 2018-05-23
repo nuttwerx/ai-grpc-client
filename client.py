@@ -32,7 +32,7 @@ class GrpcClient():
         for dataBundle in data_stream:
             parameters = dataBundle.Parameters
             values = []
-            sorted(parameters, key=lambda param: param.ParamName)
+            parameters.sort(key=lambda param: param.ParamName)
             for param in parameters:
                 # do whatever action you want here
                 val = extract_value(param)
