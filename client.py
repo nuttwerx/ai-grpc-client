@@ -30,8 +30,10 @@ class GrpcClient():
         data_stream = self.stub.streamPackets(request)
 
         for dataBundle in data_stream:
+            parameters = dataBundle.Parameters
             values = []
-            for param in dataBundle.Parameters:
+            sorted(parameters, key=lambda param: param.ParamName)
+            for param in parameters:
                 # do whatever action you want here
                 val = extract_value(param)
                 values.append(val)
