@@ -16,7 +16,7 @@ class Network(nn.Module):
         self.nb_action = nb_action
         # Connection input layer and hidden layer, 5 inputs to 30 neurons
         self.fc1 = nn.Linear(input_size, 30)
-        # Conenction hidden layer and output layer, 30 neurons to 3 actions
+        # Connection hidden layer and output layer, 30 neurons to 3 actions
         self.fc2 = nn.Linear(30, nb_action)
     
     def forward(self, state):
@@ -60,7 +60,6 @@ class Dqn():
     def select_action(self, state):
         probs = F.softmax(self.model(Variable(state, volatile = True))*75, dim=1) # T=100
         action = probs.multinomial(8)
-        print(action)
         return action[0,0]
     
     def learn(self, batch_state, batch_next_state, batch_reward, batch_action):
@@ -85,6 +84,8 @@ class Dqn():
         self.reward_window.append(reward)
         if len(self.reward_window) > 1000:
             del self.reward_window[0]
+        score = self.score()
+        print(score)
         return action
     
     def score(self):

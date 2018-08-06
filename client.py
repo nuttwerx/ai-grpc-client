@@ -52,7 +52,6 @@ class GrpcClient():
                 values.append(val)
             for listener in self.listeners:
                 output = listener.update(100,values)
-                print(output)
 
 
 def extract_value(parameter):
