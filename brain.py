@@ -68,7 +68,7 @@ class Dqn():
         target = self.gamma*next_outputs + batch_reward
         td_loss = F.smooth_l1_loss(outputs, target)
         self.optimizer.zero_grad()
-        td_loss.backward(retain_variables = True)
+        td_loss.backward(retain_graph = True)
         self.optimizer.step()
     
     def update(self, reward, new_signal):
@@ -85,7 +85,6 @@ class Dqn():
         if len(self.reward_window) > 1000:
             del self.reward_window[0]
         score = self.score()
-        print(score)
         return action
     
     def score(self):
