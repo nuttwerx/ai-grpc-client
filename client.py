@@ -1,17 +1,25 @@
 import grpc
+import brain
 import groundstation_pb2
 import groundstation_pb2_grpc
 
 FCU = "Flight Control"
 
-STREAM_ACCEL_ON = [FCU, 0x0100, [0x00000001, 0x00001003, 0x0, 0x0]]
-STREAM_ACCEL_OFF = [FCU, 0x0100, [0x00000000, 0x00001003, 0x0, 0x0]]
-STREAM_LASER_FWD_ON = [FCU, 0x0100, [0x00000001, 0x00001201, 0x0, 0x0]]
-STREAM_LASER_FWD_OFF = [FCU, 0x0100, [0x00000000, 0x00001201, 0x0, 0x0]]
+STREAM_ACCEL_ON = [FCU, 0x0100100, [0x00000001, 0x00001003, 0x0, 0x0]]
+STREAM_ACCEL_OFF = [FCU, 0x0100100, [0x00000000, 0x00001003, 0x0, 0x0]]
+STREAM_LASER_FWD_ON = [FCU, 0x0100100, [0x00000001, 0x00001201, 0x0, 0x0]]
+STREAM_LASER_FWD_OFF = [FCU, 0x0100100, [0x00000000, 0x00001201, 0x0, 0x0]]
 
-ACTIONS = [STREAM_ACCEL_ON,STREAM_ACCEL_OFF,STREAM_LASER_FWD_ON,STREAM_LASER_FWD_OFF]
+ACTIONS = [STREAM_ACCEL_ON,
+           STREAM_ACCEL_OFF,
+           STREAM_LASER_FWD_ON,
+           STREAM_LASER_FWD_OFF]
 
-PARAM_LIST = ["Accel 1 Current Accel","Accel 2 Current Accel","Accel 1 X Raw","Accel 1 Y Raw","Accel 1 Z Raw","Accel 2 X Raw","Accel 2 Y Raw","Accel 2 Z Raw",]
+PARAM_LIST = ["Accel 1 Current Accel",
+              "Accel 2 Current Accel",
+              "Accel 1 X Raw","Accel 1 Y Raw","Accel 1 Z Raw",
+              "Accel 2 X Raw","Accel 2 Y Raw","Accel 2 Z Raw",
+              ]
 
 
 class GrpcClient():
