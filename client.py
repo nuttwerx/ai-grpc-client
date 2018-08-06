@@ -35,7 +35,7 @@ class GrpcClient():
 
     def send_command(self,command):
         cmd = groundstation_pb2.Command(Node=command[0],PacketType=command[1],Data=command[2])
-        self.stub.sendCommand(command)
+        self.stub.sendCommand(cmd)
 
     def listen(self):
         # request object that specifies which parameters we would like to receive
@@ -51,7 +51,8 @@ class GrpcClient():
                 val = extract_value(param)
                 values.append(val)
             for listener in self.listeners:
-                listener.newData(values)
+                output = listener.update(100,values)
+                print(output)
 
 
 def extract_value(parameter):
