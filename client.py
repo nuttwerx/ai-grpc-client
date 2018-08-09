@@ -2,6 +2,7 @@ import grpc
 import brain
 import groundstation_pb2
 import groundstation_pb2_grpc
+import numpy
 
 FCU = "Flight Control"
 
@@ -51,8 +52,10 @@ class GrpcClient():
                 val = extract_value(param)
                 values.append(val)
             for listener in self.listeners:
-                output = listener.update(100,values)
-                print(output)
+                reward = calculate_reward(values)
+                output = listener.update(reward, values)
+                command = ['Flight Control', 0x1004, [values[output.item()]]]
+                self.send_command(command)
 
 
 def extract_value(parameter):
@@ -62,6 +65,15 @@ def extract_value(parameter):
         return parameter.Value.Uint64Value
     elif parameter.Value.Index == 3:
         return parameter.Value.DoubleValue
+
+def calculate_reward(params):
+    if params[0] >= 600:
+        reward = 100
+    elif 600 >= params[0] >= 300:
+        reward = 200
+    elif params[0] <= 300:
+        reward = 300
+    return reward
 
 
 if __name__ == '__main__':

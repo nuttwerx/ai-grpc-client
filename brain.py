@@ -58,9 +58,9 @@ class Dqn():
         self.last_reward = 0
     
     def select_action(self, state):
-        probs = F.softmax(self.model(Variable(state, volatile = True))*75) # T=100
-        action = probs.multinomial()
-        return action.data[0,0]
+        probs = F.softmax(self.model(Variable(state, volatile = True))*75, dim=1) # T=100
+        action = probs.multinomial(8)
+        return action[0,0]
     
     def learn(self, batch_state, batch_next_state, batch_reward, batch_action):
         outputs = self.model(batch_state).gather(1, batch_action.unsqueeze(1)).squeeze(1)
@@ -68,7 +68,7 @@ class Dqn():
         target = self.gamma*next_outputs + batch_reward
         td_loss = F.smooth_l1_loss(outputs, target)
         self.optimizer.zero_grad()
-        td_loss.backward(retain_variables = True)
+        td_loss.backward(retain_graph = True)
         self.optimizer.step()
     
     def update(self, reward, new_signal):
@@ -84,8 +84,8 @@ class Dqn():
         self.reward_window.append(reward)
         if len(self.reward_window) > 1000:
             del self.reward_window[0]
+        score = self.score()
         return action
     
     def score(self):
         return sum(self.reward_window)/(len(self.reward_window)+1.)
-    
