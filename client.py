@@ -35,7 +35,7 @@ class GrpcClient():
         self.listeners.append(listener)
 
     def send_command(self,command):
-        cmd = groundstation_pb2.Command(Node=command[0],PacketType=command[1],Data=command[2])
+        cmd = groundstation_pb2.Command(Origin="AIBRAIN",Node=command[0],PacketType=command[1],Data=command[2],CommandId=command[2][0])
         self.stub.sendCommand(cmd)
 
     def listen(self):
@@ -54,7 +54,8 @@ class GrpcClient():
             for listener in self.listeners:
                 reward = calculate_reward(values)
                 output = listener.update(reward, values)
-                command = ['Flight Control', 0x1004, [values[output.item()]]]
+                print(output)
+                command = ['Flight Control', 0x1004, [output.item()]]
                 self.send_command(command)
 
 
