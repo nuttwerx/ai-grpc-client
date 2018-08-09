@@ -3,7 +3,7 @@ import brain as bn
 
 # Initializes client and Q-learning model.
 client = ct.GrpcClient()
-brain = bn.Dqn(8,8,0.10)
+brain = bn.Dqn(8,4,0.10)
 client.add_listener(brain)
 
 # Starts client listening and gets streamed values.
