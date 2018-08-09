@@ -35,7 +35,7 @@ class GrpcClient():
         self.listeners.append(listener)
 
     def send_command(self,command):
-        cmd = groundstation_pb2.Command(Origin="AIBRAIN",Node=command[0],PacketType=command[1],Data=command[2],CommandId=command[2][0])
+        cmd = groundstation_pb2.Command(Origin="AIBRAIN",Node=command[0],CommandName="",CommandId=command[2][0],PacketType=command[1],Data=command[2])
         self.stub.sendCommand(cmd)
 
     def listen(self):
