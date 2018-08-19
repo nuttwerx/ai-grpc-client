@@ -22,6 +22,17 @@ PARAM_LIST = ["Accel 1 Current Accel",
               "Accel 2 X Raw","Accel 2 Y Raw","Accel 2 Z Raw",
               ]
 
+REWARD_SCHEME = {
+    PARAM_LIST[0]: {"High_bound": 0, "Low_bound": -100, "Reward_above_high_bound": -100, "Reward_below_low_bound": -100, "Reward_within_bounds": 100},
+    PARAM_LIST[1]: {"High_bound": 50, "Low_bound": -50, "Reward_above_high_bound": -100, "Reward_below_low_bound": -100, "Reward_within_bounds": 100},
+    PARAM_LIST[2]: {"High_bound": 5, "Low_bound": -150, "Reward_above_high_bound": -100, "Reward_below_low_bound": -100, "Reward_within_bounds": 100},
+    PARAM_LIST[3]: {"High_bound": 2100, "Low_bound": 2000, "Reward_above_high_bound": -100, "Reward_below_low_bound": -100, "Reward_within_bounds": 100},
+    PARAM_LIST[4]: {"High_bound": 0, "Low_bound": 0, "Reward_above_high_bound": -100, "Reward_below_low_bound": -100, "Reward_within_bounds": 100},
+    PARAM_LIST[5]: {"High_bound": 0, "Low_bound": 0, "Reward_above_high_bound": -100, "Reward_below_low_bound": -100, "Reward_within_bounds": 100},
+    PARAM_LIST[6]: {"High_bound": 0, "Low_bound": 0, "Reward_above_high_bound": -100, "Reward_below_low_bound": -100, "Reward_within_bounds": 100},
+    PARAM_LIST[7]: {"High_bound": 0, "Low_bound": 0, "Reward_above_high_bound": -100, "Reward_below_low_bound": -100, "Reward_within_bounds": 100}
+    }
+
 
 class GrpcClient():
     def __init__(self):
@@ -56,9 +67,10 @@ class GrpcClient():
                 values.append(val)
             for listener in self.listeners:
                 reward = calculate_reward(values)
+                print(reward)
                 output = listener.update(reward, values)
-                print(output)
                 self.send_command(output.item())
+            print(values)
 
 
 def extract_value(parameter):
@@ -70,13 +82,14 @@ def extract_value(parameter):
         return parameter.Value.DoubleValue
 
 def calculate_reward(params):
-    if params[0] >= 600:
-        reward = 100
-    elif 600 >= params[0] >= 300:
-        reward = 200
-    elif params[0] <= 300:
-        reward = 300
-    return reward
+    for i, j in enumerate(params):
+        if params[i] >=  REWARD_SCHEME[PARAM_LIST[i]]["High_bound"]:
+            reward =  REWARD_SCHEME[PARAM_LIST[i]]["Reward_above_high_bound"]
+        elif params[i] <= REWARD_SCHEME[PARAM_LIST[i]]["Low_bound"]:
+            reward = REWARD_SCHEME[PARAM_LIST[i]]["Reward_below_low_bound"]
+        else:
+            reward = REWARD_SCHEME[PARAM_LIST[i]]["Reward_within_bounds"]
+        return reward
 
 
 if __name__ == '__main__':
