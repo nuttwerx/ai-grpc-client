@@ -82,14 +82,15 @@ def extract_value(parameter):
         return parameter.Value.DoubleValue
 
 def calculate_reward(params):
+    reward = 0
     for i, j in enumerate(params):
         if params[i] >=  REWARD_SCHEME[PARAM_LIST[i]]["High_bound"]:
-            reward =  REWARD_SCHEME[PARAM_LIST[i]]["Reward_above_high_bound"]
+            reward += REWARD_SCHEME[PARAM_LIST[i]]["Reward_above_high_bound"]
         elif params[i] <= REWARD_SCHEME[PARAM_LIST[i]]["Low_bound"]:
-            reward = REWARD_SCHEME[PARAM_LIST[i]]["Reward_below_low_bound"]
+            reward += REWARD_SCHEME[PARAM_LIST[i]]["Reward_below_low_bound"]
         else:
-            reward = REWARD_SCHEME[PARAM_LIST[i]]["Reward_within_bounds"]
-        return reward
+            reward += REWARD_SCHEME[PARAM_LIST[i]]["Reward_within_bounds"]
+    return reward
 
 
 if __name__ == '__main__':
